@@ -1,4 +1,5 @@
-<form class="userForm" #f ="ngForm"> {{f.form.value|json}}
+<form class="userForm" #f ="ngForm"> 
+  <!-- {{f.form.value|json}} -->
   <input type="hidden" name="id" [(ngModel)]="user.id">
   <div class="form-group">
     <label for="firstname">First name</label>

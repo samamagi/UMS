@@ -65,7 +65,7 @@ import {UserInterface} from '../interfaces/user';
 
   updateUser(user: UserInterface) {
     const idx = this.users.findIndex((v) => v.id === user.id);
-    alert(idx);
+    // alert(idx);
     if (idx !== -1) {
       this.users[idx] = user;
     }
