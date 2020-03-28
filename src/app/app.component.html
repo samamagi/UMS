@@ -1,14 +1,15 @@
 <div class="container-fluid">
+  <fa name="cog" animation="spin" size="4x"></fa>
   <h1>User Management system</h1>
   <a href="#" (click)="newUser()">New User</a>
 
   <div class="row">
   
-    <div class="col-sm-8">
+    <div class="col-md-7">
       <app-users (updateUser) = "updateUser($event)"></app-users>
     </div>
 
-    <div class="col-sm-4" *ngIf="showForm">
+    <div class="col-md-5" *ngIf="showForm">
       <app-user-detail [user] = "userSelected" (exitDetail) ="closeUserDetail($event)"></app-user-detail>
     </div>
   
