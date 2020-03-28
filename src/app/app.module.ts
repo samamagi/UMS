@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { UserService } from './services/user.service';
 import { UserComponent } from './user/user.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NavComponent } from './nav/nav.component';
+import { ModalBasicComponent } from './modal-basic/modal-basic.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,15 @@ import { NavComponent } from './nav/nav.component';
     UsersComponent,
     UserComponent,
     UserDetailComponent,
-    NavComponent
+    NavComponent,
+    ModalBasicComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    NgbModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
