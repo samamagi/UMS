@@ -9,13 +9,15 @@ import { UserComponent } from './user/user.component';
 import {FormsModule} from '@angular/forms';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     UserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
