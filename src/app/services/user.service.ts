@@ -1,5 +1,5 @@
+import { UserInterface } from './../interfaces/user';
 import {Injectable} from '@angular/core';
-import {UserInterface} from '../interfaces/user';
 
 @Injectable()
 // users: Array<User> è la stessa cosa
@@ -53,6 +53,10 @@ import {UserInterface} from '../interfaces/user';
 
   getUsers() {
     return this.users;
+  }
+
+  getUser(id: number): UserInterface {
+    return this.users[id];
   }
 
   deleteUser(user: UserInterface) {

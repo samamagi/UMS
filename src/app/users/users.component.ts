@@ -9,7 +9,9 @@ import {UserInterface} from '../interfaces/user';
 })
 
 export class UsersComponent implements OnInit {
+
   title = 'Users';
+  
   users: UserInterface[] = [];
   // tslint:disable-next-line: no-output-rename
   @Output('updateUser') updateUser = new EventEmitter<UserInterface>();

@@ -25,8 +25,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'user/new',
-    component: UsersComponent
+    path: 'users/new',
+    component: UserDetailComponent
+  },
+  {
+    path: 'users/:id/edit',
+    component: UserDetailComponent
   }
 ];
 
