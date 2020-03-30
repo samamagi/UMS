@@ -54,8 +54,7 @@ import {Injectable} from '@angular/core';
   getUsers() {
     return this.users;
   }
-
-  getUser(id: number): UserInterface {
+  getUser(id: number){
     return this.users[id];
   }
 
