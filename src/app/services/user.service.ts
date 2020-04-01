@@ -1,4 +1,5 @@
 import { UserInterface } from './../interfaces/user';
+import { timer } from 'rxjs';
 import {Injectable} from '@angular/core';
 
 @Injectable()
@@ -77,6 +78,7 @@ import {Injectable} from '@angular/core';
 
   createUser(user: UserInterface) {
 
+    user.id = this.users.length + 1;
     this.users.splice(0, 0, user);
 
   }

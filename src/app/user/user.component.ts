@@ -26,7 +26,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteUser() {
+  deleteUser() {  
 
     this.userDeleted.emit(this.user);
 
@@ -37,5 +37,9 @@ export class UserComponent implements OnInit {
     this.route.navigate(['users', this.user.id, 'edit']);
     this.onUserSelect.emit(this.user);
 
+  }
+
+  showUserDetail() {
+    this.route.navigate(['users', this.user.id]);
   }
 }

@@ -1,1 +1,41 @@
-<p>{{User | json}}</p>
+<h2>{{ title }}</h2>
+<table class="table table-striped table-md table-dark">
+    <tbody>
+        <tr>
+            <th class="fieldDetail">Name</th>
+            <td class="fieldDetail">{{User.name}}</td>
+        </tr>
+        <tr>
+            <th class="fieldDetail">Last Name</th>
+            <td class="fieldDetail">{{User.lastname}}</td>
+        </tr>
+        <tr>
+            <th class="fieldDetail">Fiscal Code</th>
+            <td class="fieldDetail">{{User.fiscalcode}}</td>
+        </tr>
+        <tr>
+            <th class="fieldDetail">Email</th>
+            <td class="fieldDetail">{{User.email}}</td>
+        </tr>
+        <tr>
+            <th class="fieldDetail">Phone</th>
+            <td class="fieldDetail">{{User.phone}}</td>
+        </tr>
+        <tr>
+            <th class="fieldDetail">Age</th>
+            <td class="fieldDetail">{{User.age}}</td>
+        </tr>
+        <tr>
+            <th class="fieldDetail">Province</th>
+            <td class="fieldDetail">{{User.province}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2" class="text-center">
+                <button class="btn btn-primary" (click)="backToUsers()">BACK</button>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
