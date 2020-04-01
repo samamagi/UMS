@@ -54,8 +54,8 @@ import {Injectable} from '@angular/core';
   getUsers() {
     return this.users;
   }
-  getUser(id: number){
-    return this.users[id];
+  getUser(id: number) {
+    return this.users.find(user => user.id === id);
   }
 
   deleteUser(user: UserInterface) {

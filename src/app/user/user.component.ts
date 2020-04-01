@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {UserInterface} from '../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -19,7 +20,7 @@ export class UserComponent implements OnInit {
   @Output('onSelectUser') onUserSelect = new EventEmitter();
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private route: Router) {
   }
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class UserComponent implements OnInit {
   }
 
   updateUser() {
+    this.route.navigate(['users', this.user.id, 'edit']);
     this.onUserSelect.emit(this.user);
 
   }
