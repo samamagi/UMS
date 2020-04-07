@@ -1,12 +1,13 @@
 import { UserInterface } from './../interfaces/user';
-import { timer } from 'rxjs';
 import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 // users: Array<User> è la stessa cosa
   export class UserService {
+    private APIURL = 'http://localhost:8000/users';
     users: UserInterface[] = [
-      {
+     /* {
           id: 1,
           name: 'Hidran1',
           lastname: 'Arias1',
@@ -17,7 +18,7 @@ import {Injectable} from '@angular/core';
           age: 41
 
     },
-    {
+    { 
       id: 2,
       name: 'Hidran2',
       lastname: 'Arias',
@@ -46,17 +47,18 @@ import {Injectable} from '@angular/core';
       province: 'Torino',
       phone: '454545455',
       age: 43
-    }
+    }*/
   ];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   getUsers() {
-    return this.users;
+    return this.http.get(this.APIURL);
   }
   getUser(id: number) {
-    return this.users.find(user => user.id === id);
+    // return this.users.find(user => user.id === id);
+    return this.http.get(this.APIURL + '/' + id);
   }
 
   deleteUser(user: UserInterface) {

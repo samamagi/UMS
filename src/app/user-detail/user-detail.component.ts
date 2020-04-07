@@ -37,7 +37,9 @@ export class UserDetailComponent implements OnInit {
         if (!params.id) {
           return;
         }
-        this.user = this.userService.getUser(+params.id);
+        this.userService.getUser(+params.id).subscribe(
+          reponse => this.user = reponse['data']
+        );
       }
     );
   }
