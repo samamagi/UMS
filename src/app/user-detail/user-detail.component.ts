@@ -1,4 +1,3 @@
-import { UserInterface } from './../interfaces/user';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {User} from '../classes/user';
 import {UserService} from '../services/user.service';
@@ -46,11 +45,19 @@ export class UserDetailComponent implements OnInit {
 
   saveUser() {
     if (this.user.id > 0) {
-      this.userService.updateUser(this.user);
+      this.userService.updateUser(this.user).subscribe(response => {
+        const user = response['data'] as User;
+        if (response['success']) {
+          alert('User ' + this.user.name + ' modificato correttamente');
+        } else {
+          alert(response['message']);
+        }
+        this.router.navigate(['users']);
+      }
+    );
     } else {
       this.userService.createUser(this.user);
     }
-    this.router.navigate(['users']);
   }
 
   resetForm(form) {
@@ -61,12 +68,6 @@ export class UserDetailComponent implements OnInit {
       this.user = this.userCopy;
     }
   }
-
-/*
-  closeDetail() {
-    this.exitDetail.emit(this.user);
-  }
-*/
   backToUsers() {
     this.router.navigate(['users']);
   }
