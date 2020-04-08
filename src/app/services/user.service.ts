@@ -1,12 +1,12 @@
-import { UserInterface } from './../interfaces/user';
 import {Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {User} from '../classes/user';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 // users: Array<User> è la stessa cosa
   export class UserService {
     private APIURL = 'http://localhost:8000/users';
-    users: UserInterface[] = [];
+    users: User[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -19,21 +19,20 @@ import { HttpClient } from '@angular/common/http';
     return this.http.get(this.APIURL + '/' + id);
   }
 
-  deleteUser(user: UserInterface) {
-    const index = this.users.indexOf(user);
-    if (index >= 0) {
-      this.users.splice(index, 1);
-    }
-
+  deleteUser(user: User) {
+    alert('user.id ' + user.id);
+    const DELETE = {_method: 'DELETE'};
+    // user['_method'] = 'DELETE';
+    return this.http.post(this.APIURL + '/' + user.id, DELETE);
   }
 
-  updateUser(user: UserInterface) {
+  updateUser(user: User) {
     user['_method'] = 'PUT';
     return this.http.post(this.APIURL + '/' + user.id, user);
   }
 
 
-  createUser(user: UserInterface) {
+  createUser(user: User) {
     user['_method'] = 'POST';
     return this.http.post(this.APIURL, user);
   }

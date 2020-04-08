@@ -1,6 +1,6 @@
 import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {UserInterface} from '../interfaces/user';
+import {User} from '../classes/user';
 
 @Component({
   selector: 'app-users',
@@ -11,9 +11,9 @@ import {UserInterface} from '../interfaces/user';
 export class UsersComponent implements OnInit {
 
   title = 'Users';
-  users: UserInterface[] = [];
+  users: User[] = [];
   // tslint:disable-next-line: no-output-rename
-  @Output('updateUser') updateUser = new EventEmitter<UserInterface>();
+  @Output('updateUser') updateUser = new EventEmitter<User>();
 
   constructor(private userService: UserService) {
 
@@ -24,13 +24,28 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers().subscribe(
       response => this.users = response['data'] );
   }
-
+/*
   onDeleteUser(user: UserInterface) {
 
     this.userService.deleteUser(user);
   }
+*/
+onDeleteUser(user: User) {
+  // const deleteUser = confirm('Do you really want to delete user '+
+    // user.name + ' ' + user.lastname + '');
+  // if (deleteUser) {
+    this.userService.deleteUser(user).subscribe(
+      response => {
+        const idx = this.users.indexOf(user);
+        this.users.splice(idx, 1);
+        alert(response['message']);
 
-  onSelectUser(user: UserInterface) {
+      }
+    );
+  //}
+}
+
+  onSelectUser(user: User) {
     const userCopy = Object.assign({}, user);
 
     this.updateUser.emit(userCopy);

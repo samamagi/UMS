@@ -72,8 +72,20 @@ updateUser(user: User){
     this.router.navigate(['users']);
   }
 );
-
 }
+/*
+deleteUser(user: User){
+  this.userService.deleteUser(this.user).subscribe(response => {
+    if (response['success']) {
+      alert('User ' + this.user.name + ' eliminato correttamente');
+    } else {
+      alert(response['message']);
+    }
+    this.router.navigate(['users']);
+  }
+);
+}
+*/
   resetForm(form) {
 
     if (this.user.id === 0) {
