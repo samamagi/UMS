@@ -34,10 +34,8 @@ import { HttpClient } from '@angular/common/http';
 
 
   createUser(user: UserInterface) {
-
-    user.id = this.users.length + 1;
-    this.users.splice(0, 0, user);
-
+    user['_method'] = 'POST';
+    return this.http.post(this.APIURL, user);
   }
 }
 
