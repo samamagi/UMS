@@ -31,9 +31,9 @@ export class UsersComponent implements OnInit {
   }
 */
 onDeleteUser(user: User) {
-  // const deleteUser = confirm('Do you really want to delete user '+
-    // user.name + ' ' + user.lastname + '');
-  // if (deleteUser) {
+  const deleteUser = confirm('Do you really want to delete user ' +
+    user.name + ' ' + user.lastname + '');
+  if (deleteUser) {
     this.userService.deleteUser(user).subscribe(
       response => {
         const idx = this.users.indexOf(user);
@@ -42,7 +42,7 @@ onDeleteUser(user: User) {
 
       }
     );
-  //}
+  }
 }
 
   onSelectUser(user: User) {

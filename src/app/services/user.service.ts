@@ -20,7 +20,6 @@ import {HttpClient} from '@angular/common/http';
   }
 
   deleteUser(user: User) {
-    alert('user.id ' + user.id);
     const DELETE = {_method: 'DELETE'};
     // user['_method'] = 'DELETE';
     return this.http.post(this.APIURL + '/' + user.id, DELETE);
