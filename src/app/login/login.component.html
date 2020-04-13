@@ -3,7 +3,7 @@
         <h1>
             login works!
         </h1>
-        <form name="loginForm" #f="ngForm" (ngSubmit)="signIn(f.form)">
+        <form name="loginForm" #f="ngForm" (ngSubmit)="signIn(f)">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input class="form-control" required email type="email" ngModel #email="ngModel" name="email" id="email">
@@ -26,7 +26,7 @@
                       The field password is required!!!
                     </div>
                     <div class="alert-danger" *ngIf="password.errors.minlength" >
-                      Tha value must be {{password.errors.minlength}} chars length!!!
+                      Tha value must be {{password.errors.minlength.requiredLength}} chars length!!!
                     </div>
                 </div>
             </div>
