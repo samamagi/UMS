@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,4 +13,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  signIn(form: NgForm) {
+    alert('valid: ' + form.valid);
+    alert('email: ' + form.value.email);
+  }
 }
