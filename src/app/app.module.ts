@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutingModuleModule } from './routing-module.module';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoginComponent } from './login/login.component';
     NavComponent,
     ModalBasicComponent,
     UserDataComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
