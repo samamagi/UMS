@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { logging } from 'protractor';
 import { Router } from '@angular/router';
+import { User } from '../classes/user';
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +14,27 @@ export class NavComponent implements OnInit {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onNewUser = new EventEmitter();
   public isUserLOggedIn = false;
-  constructor(private auth: AuthService, private router: Router) { }
+  public username: string;
+  constructor(private auth: AuthService, private router: Router) { 
+    auth.usersignedin.subscribe(
+      (user: User) => {
+        this.username = user.name;
+        this.isUserLOggedIn = true;
+      }
+    );
+    auth.userlogout.subscribe(
+      () => {
+        this.username = '';
+        this.isUserLOggedIn = false;
+      }
+    );
+    auth.usersignedup.subscribe(
+      (user: User) => {
+        this.username = user.name;
+        this.isUserLOggedIn = true;
+      }
+    );
+  }
 
   showMenu = false;
 
