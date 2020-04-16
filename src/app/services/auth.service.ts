@@ -1,6 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { User } from '../classes/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpErrorResponse } from '@angular/common/http';
 
 interface Jwt {
   access_token: string;
@@ -26,23 +26,29 @@ export class AuthService {
     return this.isUserLogged;
   }
   signIn(email: string, password: string) {
-    this.http.post(this.APIAUTHURL + 'login', {
-      email: email,
-      password: password
-    }).subscribe(
+
+    this.http.post(this.APIAUTHURL + 'login',
+      {
+        email: email,
+        password: password
+      }
+    ).subscribe(
       (payload: Jwt) => {
         localStorage.setItem('token', payload.access_token);
-        localStorage.setItem('user', JSON.stringify(payload));
-        const user = new User();
+        console.log(payload);
+        localStorage.setItem('user' , JSON.stringify(payload));
+        let user = new User();
         user.name = payload.user_name;
         user.email = payload.email;
         this.usersignedin.emit(user);
         return true;
-      },
-      (error: any) => {
-        console.log(error);
-      }
 
+      } ,
+      (httpResp: HttpErrorResponse) => {
+
+        console.log(httpResp);
+        alert(httpResp.message);
+      }
     );
   }
   signUp(username: string, email: string, password: string) {
@@ -55,6 +61,7 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.userlogout.emit();
     this.isUserLogged = false;
   }
