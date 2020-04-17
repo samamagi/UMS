@@ -15,7 +15,7 @@ import { AuthService } from './auth.service';
   getAuthHeader(): HttpHeaders {
     let headers = new HttpHeaders(
       {
-        Authorization: 'Bearer' + this.auth.getToken()
+        Authorization: 'Bearer ' + this.auth.getToken()
       }
     );
     return headers;
@@ -28,24 +28,32 @@ import { AuthService } from './auth.service';
   }
   getUser(id: number) {
     // return this.users.find(user => user.id === id);
-    return this.http.get(this.APIURL + '/' + id);
+    return this.http.get(this.APIURL + '/' + id, {
+      headers: this.getAuthHeader()
+    });
   }
 
   deleteUser(user: User) {
     const DELETE = {_method: 'DELETE'};
     // user['_method'] = 'DELETE';
-    return this.http.post(this.APIURL + '/' + user.id, DELETE);
+    return this.http.post(this.APIURL + '/' + user.id, DELETE, {
+      headers: this.getAuthHeader()
+    });
   }
 
   updateUser(user: User) {
     user['_method'] = 'PUT';
-    return this.http.post(this.APIURL + '/' + user.id, user);
+    return this.http.post(this.APIURL + '/' + user.id, user, {
+      headers: this.getAuthHeader()
+    });
   }
 
 
   createUser(user: User) {
     user['_method'] = 'POST';
-    return this.http.post(this.APIURL, user);
+    return this.http.post(this.APIURL, user, {
+      headers: this.getAuthHeader()
+    });
   }
 }
 
