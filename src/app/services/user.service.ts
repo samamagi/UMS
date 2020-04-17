@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User} from '../classes/user';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable()
 // users: Array<User> è la stessa cosa
@@ -8,11 +9,22 @@ import {HttpClient} from '@angular/common/http';
     private APIURL = 'http://localhost:8000/users';
     users: User[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthService) {
+  }
+
+  getAuthHeader(): HttpHeaders {
+    let headers = new HttpHeaders(
+      {
+        Authorization: 'Bearer' + this.auth.getToken()
+      }
+    );
+    return headers;
   }
 
   getUsers() {
-    return this.http.get(this.APIURL);
+    return this.http.get(this.APIURL, {
+      headers: this.getAuthHeader()
+    });
   }
   getUser(id: number) {
     // return this.users.find(user => user.id === id);
