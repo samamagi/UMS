@@ -52,12 +52,33 @@ export class AuthService {
     );
   }
   signUp(username: string, email: string, password: string) {
-    localStorage.setItem('token', email);
+    
     const user = new User();
     user.name = username;
     user.email = email;
-    this.usersignedup.emit(user);
-    return true;
+
+    this.http.post(this.APIAUTHURL + 'signup',
+      {
+        email: email,
+        password: password,
+        name: username
+      }
+    ).subscribe(
+      (payload: Jwt) => {
+        localStorage.setItem('token', payload.access_token);
+        console.log(payload);
+        localStorage.setItem('user' , JSON.stringify(payload));
+
+        this.usersignedup.emit(user);
+      } ,
+      (httpResp: HttpErrorResponse) => {
+
+        console.log(httpResp);
+        alert('AUTH-SERVICE-TS ==> ' + httpResp.message);
+      }
+    );
+    // this.usersignedup.emit(user);
+    // return true;
   }
   logout() {
     localStorage.removeItem('token');
