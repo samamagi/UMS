@@ -49,7 +49,7 @@ export class AuthService {
     ));
   }
   signUp(username: string, email: string, password: string) {
-    
+
     const user = new User();
     user.name = username;
     user.email = email;
