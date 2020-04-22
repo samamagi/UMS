@@ -54,13 +54,14 @@ export class AuthService {
     user.name = username;
     user.email = email;
 
-    this.http.post(this.APIAUTHURL + 'signup',
+    return this.http.post(this.APIAUTHURL + 'signup',
       {
         email: email,
         password: password,
         name: username
       }
-    ).subscribe(
+    ).pipe(
+      tap (
       (payload: Jwt) => {
         localStorage.setItem('token', payload.access_token);
         console.log(payload);
@@ -73,7 +74,7 @@ export class AuthService {
         console.log(httpResp);
         alert('AUTH-SERVICE-TS ==> ' + httpResp.message);
       }
-    );
+    ));
     // this.usersignedup.emit(user);
     // return true;
   }

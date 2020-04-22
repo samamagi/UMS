@@ -1,6 +1,7 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { error } from 'protractor';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,13 +12,24 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) {
-      auth.usersignedup.subscribe( () => { router.navigate(['/']);
-    } );
   }
 
   ngOnInit() {
+    /*
+    this.auth.usersignedup.subscribe( () => {
+      this.router.navigate(['/']);
+    } );
+    */
   }
   signUp(form: NgForm) {
-    this.auth.signUp(form.value.name, form.value.email, form.value.password);
+    this.auth.signUp(form.value.name, form.value.email, form.value.password)
+      .subscribe( resp => {
+        alert(resp.user_name + ' registered correctly');
+        this.router.navigate(['/']);
+      },
+        ({error}) => {
+          alert(error.error);
+        }
+    );
   }
 }
