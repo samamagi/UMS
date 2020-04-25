@@ -29,24 +29,24 @@ import { environment } from '../../environments/environment';
     });
   }
   getUser(id: number) {
-    // return this.http.get(this.APIURL + '/' + id, {
-    return this.http.get(this.APIURL + id, {
+    return this.http.get(this.APIURL + '/' + id, {
+    // return this.http.get(this.APIURL + id, {
       headers: this.getAuthHeader()
     });
   }
 
   deleteUser(user: User) {
     const DELETE = {_method: 'DELETE'};
-    // return this.http.post(this.APIURL + '/' + user.id, DELETE, {
-    return this.http.post(this.APIURL + user.id, DELETE, {
+    return this.http.post(this.APIURL + '/' + user.id, DELETE, {
+    // return this.http.post(this.APIURL + user.id, DELETE, {
       headers: this.getAuthHeader()
     });
   }
 
   updateUser(user: User) {
     user['_method'] = 'PUT';
-    // return this.http.post(this.APIURL + '/' + user.id, user, {
-    return this.http.post(this.APIURL +   user.id, user, {
+    return this.http.post(this.APIURL + '/' + user.id, user, {
+    // return this.http.post(this.APIURL +   user.id, user, {
       headers: this.getAuthHeader()
     });
   }

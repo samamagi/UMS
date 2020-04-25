@@ -30,7 +30,7 @@ export class AuthService {
   }
   signIn(email: string, password: string) {
 
-    return this.http.post(this.APIAUTHURL + 'login',
+    return this.http.post(this.APIAUTHURL + '/login',
       {
         email: email,
         password: password
@@ -56,7 +56,7 @@ export class AuthService {
     user.name = username;
     user.email = email;
 
-    return this.http.post(this.APIAUTHURL + 'signup',
+    return this.http.post(this.APIAUTHURL + '/signup',
       {
         email: email,
         password: password,
