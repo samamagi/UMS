@@ -2,18 +2,20 @@ import {Injectable} from '@angular/core';
 import {User} from '../classes/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 // users: Array<User> è la stessa cosa
   export class UserService {
-    private APIURL = 'http://localhost:8000/users';
+    // private APIURL = 'http://localhost:8000/users';
+    private APIURL = environment.APIURL;
     users: User[] = [];
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
 
   getAuthHeader(): HttpHeaders {
-    let headers = new HttpHeaders(
+    const headers = new HttpHeaders(
       {
         Authorization: 'Bearer ' + this.auth.getToken()
       }

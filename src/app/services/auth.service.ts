@@ -2,6 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { User } from '../classes/user';
 import { HttpClient, HttpHeaderResponse, HttpErrorResponse } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 interface Jwt {
   access_token: string;
@@ -19,7 +20,8 @@ export class AuthService {
   @Output() usersignedup = new EventEmitter<User>();
   @Output() userlogout = new EventEmitter();
 
-  private APIAUTHURL = 'http://localhost:8000/api/auth/';
+  // private APIAUTHURL = 'http://localhost:8000/api/auth/';
+  private APIAUTHURL = environment.APIAUTH;
   constructor(private http: HttpClient) { }
 
   isUserLoggedIn() {
@@ -39,7 +41,7 @@ export class AuthService {
         localStorage.setItem('token', payload.access_token);
         console.log(payload);
         localStorage.setItem('user' , JSON.stringify(payload));
-        let user = new User();
+        const user = new User();
         user.name = payload.user_name;
         user.email = payload.email;
         this.usersignedin.emit(user);
@@ -86,8 +88,8 @@ export class AuthService {
   }
   getUser(): User {
     const data = JSON.parse(localStorage.getItem('user'));
-    let user = new User();
-    if (data){
+    const user = new User();
+    if (data) {
       user.name = data['user_name'];
       user.email = data['email'];
     }
